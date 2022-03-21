@@ -28,6 +28,7 @@ mongoose.connect('mongodb+srv://alexandre:NewPassword44@cluster0.k8pza.mongodb.n
 // app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors({origin: "http://127.0.0.1:8081"}));
+app.use("/api/auth", userRoutes);
 
 // routes 
 
