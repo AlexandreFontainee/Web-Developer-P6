@@ -4,9 +4,11 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
+require("dotenv").config();
 
 // routes
 const userRoutes = require('./routes/userRoutes');
+const sauceRoutes = require("./routes/sauces");
 
 mongoose.connect('mongodb+srv://alexandre:NewPassword44@cluster0.k8pza.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     {
@@ -28,10 +30,11 @@ mongoose.connect('mongodb+srv://alexandre:NewPassword44@cluster0.k8pza.mongodb.n
 // app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors({origin: "http://127.0.0.1:8081"}));
+
 app.use("/api/auth", userRoutes);
+app.use("/api/sauces", sauceRoutes);
 
 // routes 
-
 
 
 module.exports = app;
