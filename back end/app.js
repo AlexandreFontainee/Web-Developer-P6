@@ -4,13 +4,14 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
-require("dotenv").config();
+require('dotenv').config();
+
 
 // routes
 const userRoutes = require('./routes/userRoutes');
 const sauceRoutes = require("./routes/sauces");
 
-mongoose.connect('mongodb+srv://alexandre:NewPassword44@cluster0.k8pza.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect(process.env.Mongoose_Log,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true

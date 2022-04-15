@@ -5,7 +5,7 @@ require("dotenv").config();
 module.exports = (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
-    const decodedToken = jwt.verify(token, process.env.SECRET_TOKEN);
+    const decodedToken = jwt.verify(token, "RANDOM_NEW_TOKEN_ASSIGNED");
     const userId = decodedToken.userId;
     if (req.body.userId && req.body.userId !== userId) {
       // Si userId existe, vérifier par rapport au userId dans le token
@@ -26,7 +26,8 @@ module.exports = (req, res, next) => {
     } else {
       next();
     }
-  } catch {
+  } catch(error){
+    console.log(error);
     res.status(401).json({
       error: "requête non autorisé",
     });
