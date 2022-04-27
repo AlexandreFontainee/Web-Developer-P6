@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('../middleware/validator');
 
 const sauceSchema = mongoose.Schema ({
     
@@ -9,12 +10,14 @@ const sauceSchema = mongoose.Schema ({
 
     name : {
         type : String,
-        required : true
+        required : true,
+        validate: validator.inputValidator
     },
 
     manufacturer : {
         type : String,
-        required : true
+        required : true,
+        validate: validator.inputValidator
     },
 
     description : {
@@ -24,7 +27,8 @@ const sauceSchema = mongoose.Schema ({
 
     mainPepper : {
         type : String,
-        required : true
+        required : true,
+        validate: validator.inputValidator
     },
 
     imageUrl : {

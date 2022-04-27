@@ -4,14 +4,18 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
+// gestion des chemins de fichiers
+const path = require("path");
+
 require('dotenv').config();
+const log = process.env.Mongoose_Log;
 
 
 // routes
 const userRoutes = require('./routes/userRoutes');
 const sauceRoutes = require("./routes/sauces");
 
-mongoose.connect(process.env.Mongoose_Log,
+mongoose.connect(log,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -32,9 +36,9 @@ mongoose.connect(process.env.Mongoose_Log,
 app.use(express.json());
 app.use(cors({origin: "http://127.0.0.1:8081"}));
 
+app.use("/images", express.static(path.join(__dirname, "images")));
 app.use("/api/auth", userRoutes);
 app.use("/api/sauces", sauceRoutes);
-
 // routes 
 
 
